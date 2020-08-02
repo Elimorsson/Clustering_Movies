@@ -1,4 +1,4 @@
-import com.sun.jdi.connect.Connector;
+
 
 import java.util.ArrayList;
 
@@ -7,9 +7,10 @@ public class User {
     private String gender;
     private int age;
     private int occupation;
-    private int zipCode;
+    private String zipCode;
    //private ArrayList<Rating> reviews;
     private int[] movies;
+    private int ratedMovies;
 
 
     public User(int userID, String gender, int age, String occupation, String zipCode) {
@@ -17,7 +18,9 @@ public class User {
         this.gender = gender;
         this.age = age;
         this.occupation = Integer.parseInt(occupation);
-        this.zipCode = Integer.parseInt(zipCode);
+        this.zipCode = zipCode;
+        this.ratedMovies = 0;
+
        // reviews = new ArrayList<>();
         movies = new int[Defines.numOfMovies + 1];    //initialized with zeros for all values
     }
@@ -50,6 +53,14 @@ public class User {
         return gender;
     }
 
+    public int getRatedMovies() {
+        return ratedMovies;
+    }
+
+    public void increaseRatedMovies() {
+        this.ratedMovies = ratedMovies + 1;
+    }
+
     public void setGender(String gender) {
         this.gender = gender;
     }
@@ -70,11 +81,11 @@ public class User {
         this.occupation = occupation;
     }
 
-    public int getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(int zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 

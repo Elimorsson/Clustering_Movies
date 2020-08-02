@@ -1,21 +1,34 @@
 public class Movie {
-    int id;
-    String name;
-    String genre;
-    int reviews;
+    private  int id;
+    private String name;
+    private String genre;
+    private int reviews;
+    private int ignored;
 
     public Movie(int id, String name, String genre) {
         this.id = id;
         this.name = name;
         this.genre = genre;
         this.reviews = 0;
+        this.ignored = 0;
     }
 
-    public void incrementReviews(){        //don't worry mt Friend
+    public int getIgnored() {
+        return ignored;
+    }
+
+    public void setIgnored(int ignored) {
+        this.ignored = ignored;
+    }
+
+    public void incrementReviews(){
         this.reviews += 1;
     }
     public int getId() {
         return id;
+    }
+    public int getReviews() {
+        return reviews;
     }
 
     public void setId(int id) {
@@ -33,6 +46,7 @@ public class Movie {
                 ", name='" + name + '\'' +
                 ", genre='" + genre + '\'' +
                 ", reviews=" + reviews +
+                ", isIgnored = " + ignored +
                 '}' + '\n';
     }
 
