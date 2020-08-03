@@ -14,6 +14,14 @@ public class Movie {
         this.ignored = 0;
         this.probability = 0.0;
     }
+    public Movie(int id, String name, double probability) {
+        this.id = id;
+        this.name = name;
+        this.genre = " ";
+        this.reviews = 0;
+        this.ignored = 0;
+        this.probability = probability;
+    }
 
     public int getIgnored() {
         return ignored;

@@ -1,5 +1,4 @@
 
-
 import java.io.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -7,6 +6,7 @@ import java.util.stream.Collectors;
 public class PreProcessing {
     protected static Movie [] movies = new Movie[Defines.numOfMovies + 1];
     private static User[] usersArr = new User[Defines.numOfUsers + 1];
+    private static List<Movie> ignoredMovies = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
 
@@ -15,19 +15,42 @@ public class PreProcessing {
         readFromInput("ratings.dat");
 
 
-        List<Movie> finalMovies = Arrays.stream(movies).filter(Objects::nonNull).filter(movie -> movie.getIgnored()==0).collect(Collectors.toList());
+        List<Movie> finalMovies = Arrays.stream(movies).filter(Objects::nonNull).collect(Collectors.toList());
         movies = finalMovies.toArray(new Movie[0]);
 
         for (Movie movie : movies) {
             if (movie.getReviews() < 10) {
                 movie.setIgnored(1);
-                // System.out.printf("Movie <%d> ignored because it has only <%d> ratings\n",m.getId(),m.getReviews());
+                ignoredMovies.add(movie);
             }
         }
+
+        finalMovies = Arrays.stream(movies).filter(movie -> movie.getIgnored()==0).collect(Collectors.toList());
+        movies = finalMovies.toArray(new Movie[0]);
+
+
+        FileWriter myWriter = createFile("correlationData.txt");
+        for (int i = 0; i < movies.length; i++) {
+            Movie m1 = movies[i];
+            for (int j = i + 1; j < movies.length; j++) {
+                Movie m2 = movies[j];
+                double correlation = calcCorrelation(m1, m2);
+                WriteToFile(m1, m2, correlation, myWriter);
+            }
+        }
+        myWriter.close();
+        myWriter = createFile("ignoredMovies.txt");
+        for (Movie movie : ignoredMovies) {
+            myWriter.write( movie.getId() + " " + movie.getReviews()+ "\n");
+        }
+        myWriter.close();
+    }
+
+    private static FileWriter createFile(String fileName) throws IOException {
         try {
-            File DataSet = new File("DataSet2.dat");
-            if (DataSet.createNewFile()) {
-                System.out.println("File created: " + DataSet.getName());
+            File file = new File(fileName);
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
             } else {
                 System.out.println("File already exists.");
             }
@@ -35,30 +58,23 @@ public class PreProcessing {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        FileWriter myWriter = new FileWriter("DataSet2.dat");
-        for (int i = 0 ; i < movies.length; i++){
-            Movie m1 = movies[i];
-            for(int j = i + 1; j < movies.length; j++){
-                Movie m2 = movies[j];
-                int correlation = calcCorrelation(m1,m2);
-                WriteToFile(m1.getId(),m2.getId(),correlation,myWriter);
-            }
-        }
-        myWriter.close();
-        System.out.println("Preprocessing is finished");
-    }
 
-    private static void WriteToFile(int id1, int id2, int correlation, FileWriter myWriter) {
+        FileWriter myWriter = new FileWriter(fileName);
+        return myWriter;
+    }
+    private static void WriteToFile(Movie m1, Movie m2, double correlation, FileWriter myWriter) {
         try {
-            char c = correlation == 1  ? '+' : '-';
-            myWriter.write(id1 + " " + id2 + " " + c + "\n");
+            char c =  correlation>0  ? '+' : '-';
+            myWriter.write(m1.getId()+ "::" + m1.getName() + "::" + m1.getProbability() + "::" +
+                    m2.getId()+ "::" + m2.getName() + "::"  + m2.getProbability() + "::" +
+                   correlation +"\n");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
 
-    private static int calcCorrelation(Movie m1, Movie m2){
+    private static double calcCorrelation(Movie m1, Movie m2){
         double p1 = m1.getProbability();
         double p2 = m2.getProbability();
         if (p1 == 0.0) {
@@ -71,9 +87,9 @@ public class PreProcessing {
         }
         double p1_2 = calcProb(m1,m2);
         if (p1_2 >= p1*p2){
-            return  1;
+            return  p1_2;
         }
-        return 0;
+        return -p1_2;
     }
 
     private static double calcProb(Movie m_j) {
@@ -104,7 +120,7 @@ public class PreProcessing {
         return (1.0 / (Defines.numOfUsers + 1)) * sigma ;
     }
 
-    private static void readFromInput(String fileName) throws IOException {
+    public static void readFromInput(String fileName) throws IOException {
         BufferedReader bufferRead = new BufferedReader(new FileReader(fileName));
         String line = bufferRead.readLine();
 
