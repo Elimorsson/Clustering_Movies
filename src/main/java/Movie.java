@@ -4,6 +4,7 @@ public class Movie {
     private String genre;
     private int reviews;
     private int ignored;
+    private double probability;
 
     public Movie(int id, String name, String genre) {
         this.id = id;
@@ -11,10 +12,19 @@ public class Movie {
         this.genre = genre;
         this.reviews = 0;
         this.ignored = 0;
+        this.probability = 0.0;
     }
 
     public int getIgnored() {
         return ignored;
+    }
+
+    public double getProbability() {
+        return probability;
+    }
+
+    public void setProbability(double probability) {
+        this.probability = probability;
     }
 
     public void setIgnored(int ignored) {
