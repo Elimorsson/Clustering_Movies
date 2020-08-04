@@ -5,34 +5,41 @@ import java.io.IOException;
 import java.util.*;
 
 public class pivotImplementation {
-
-    private static Movie[] movies = new Movie[Defines.numOfMovies+1];
-    private static double[][] correlMatrix;
-    public static void main(String[] args) throws Exception {
+    protected Movie[] movies = new Movie[Defines.numOfMovies+1];
+    protected double[][] correlMatrix;
+    protected HashSet<ArrayList<Integer>> bigCluster = new HashSet<>();
+    protected  double sumPivot;
+    public void main(String[] args) throws Exception {
         if (args.length < 2)
             throw new Exception("should be at least 2 arguments");
         String subSSetPath = args[0];
         String subsetPath = args[1];
+        int pivotOrImprove = Integer.parseInt(args[2]);
         HashSet<Integer> subsetMovies = parseSubSet(subsetPath);
-        String dataSetPath = subSSetPath+ "\\correlationData.txt";
-        String ignoredPath = subSSetPath+ "\\ignoredMovies.txt";
+        String dataSetPath = subSSetPath+ "/correlationData.txt";
+        String ignoredPath = subSSetPath+ "/ignoredMovies.txt";
         filterIgnoredMovies(subsetMovies , ignoredPath);
         correlMatrix = parseDataSet(dataSetPath,subsetMovies);
         List<Integer> subArrayMovies = new ArrayList<>(subsetMovies);
-        HashSet<HashSet<Integer>> bigCluster = new HashSet<>();
         pivotAlgo(bigCluster,subArrayMovies);
 
-        
-        for(HashSet<Integer> c: bigCluster){
-            for(Integer i: c) {
-                System.out.printf("<%d> <%s>, ", movies[i].getId(), movies[i].getName());
+        sumPivot = 0;
+        //if (pivotOrImprove == 1) {
+            for (ArrayList<Integer> c : bigCluster) {
+                for (Integer i : c) {
+                    System.out.printf("<%d> <%s>, ", movies[i].getId(), movies[i].getName());
+                }
+                System.out.println();
+                double cost = calcCost(c);
+                System.out.println(cost);
+                sumPivot += cost;
             }
-            System.out.println();
-            System.out.println(calcCost(c));
-        }
+        System.out.println(" the cost of PivotAlgo is - " + sumPivot);
+        System.out.println();
+        //}
     }
 
-    private static double calcCost(HashSet<Integer> cluster) {
+    protected double calcCost(ArrayList<Integer> cluster) {
         double sigma = 0;
         for (Integer i: cluster) {
             double factor = 1.0 / (cluster.size() - 1);
@@ -45,13 +52,12 @@ public class pivotImplementation {
                 int coll = i > j ? i : j;
 
                 sigma += factor * Math.log(1.0 / Math.abs(correlMatrix[row][coll]));
-
             }
         }
         return sigma;
     }
 
-    private static void filterIgnoredMovies(HashSet<Integer> subsetMovies , String path) throws IOException {
+    private void filterIgnoredMovies(HashSet<Integer> subsetMovies , String path) throws IOException {
         BufferedReader bufferRead = new BufferedReader(new FileReader(path));
         String line = bufferRead.readLine();
         while (line != null) {
@@ -66,7 +72,7 @@ public class pivotImplementation {
         }
     }
 
-    public static HashSet<Integer> parseSubSet(String pathName) throws Exception{
+    private HashSet<Integer> parseSubSet(String pathName) throws Exception{
         BufferedReader bufferRead = new BufferedReader(new FileReader(pathName));
         String line = bufferRead.readLine();
         HashSet<Integer> movies = new HashSet<>();
@@ -82,7 +88,7 @@ public class pivotImplementation {
     }
 
 
-    public static double[][] parseDataSet(String pathName, HashSet<Integer> subset) throws Exception {
+    private double[][] parseDataSet(String pathName, HashSet<Integer> subset) throws Exception {
         BufferedReader bufferRead = new BufferedReader(new FileReader(pathName));
         String line = bufferRead.readLine();
         double [][] correlMatrix = new double[Defines.numOfMovies][Defines.numOfMovies];
@@ -126,28 +132,28 @@ public class pivotImplementation {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    public static void pivotAlgo(HashSet<HashSet<Integer>> bigCluster, List<Integer> movies){
-        if(movies.isEmpty()){
+    public void pivotAlgo(HashSet<ArrayList<Integer>> bigCluster, List<Integer> cluster){
+        if(cluster.isEmpty()){
             return;
         }
-        int index = getRandomNumber(0,movies.size());
-        Integer randPivot = movies.get(index);
-        HashSet<Integer> Cluster = new HashSet<>();
+        int index = getRandomNumber(0,cluster.size());
+        Integer randPivot = cluster.get(index);
+        ArrayList<Integer> newCluster = new ArrayList<>();
         List<Integer> vTag = new ArrayList<>();
-        Cluster.add(randPivot);
-        for(int j = 0; j < movies.size(); j++){
+        newCluster.add(randPivot);
+        for(int j = 0; j < cluster.size(); j++){
             if (j == index) continue;
-            Integer otherMovie = movies.get(j);
+            Integer otherMovie = cluster.get(j);
             int row = randPivot < otherMovie ? randPivot : otherMovie;
             int column = randPivot > otherMovie ? randPivot : otherMovie;
             if(correlMatrix[row][column] > 0 ){
-                Cluster.add(otherMovie);
+                newCluster.add(otherMovie);
             }
             else{
                 vTag.add(otherMovie);
             }
         }
-        bigCluster.add(Cluster);
+        bigCluster.add(newCluster);
         pivotAlgo(bigCluster,vTag);
     }
 }

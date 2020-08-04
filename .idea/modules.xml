@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PivotAlgorithm/PivotAlgorithm.iml" filepath="$PROJECT_DIR$/PivotAlgorithm/PivotAlgorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/improvedAlgorithm/improvedAlgorithm.iml" filepath="$PROJECT_DIR$/improvedAlgorithm/improvedAlgorithm.iml" />
     </modules>
   </component>
 </project>

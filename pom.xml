@@ -22,6 +22,7 @@
     </build>
     <modules>
         <module>PivotAlgorithm</module>
+        <module>improvedAlgorithm</module>
     </modules>
 
 

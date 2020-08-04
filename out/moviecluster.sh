@@ -5,7 +5,7 @@ if [ $# -ne 3 ]
 fi
 if [ $2 -eq 1 ]
   then
-    java -jar .\pivotJar.jar $1 $3
+    java -jar ./pivotJar.jar $1 $3
   else
-     java -jar .\improveAlgo.jar $1 $3
+     java -jar ./improveAlgo.jar $1 $3
 fi
