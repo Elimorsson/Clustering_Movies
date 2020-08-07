@@ -8,7 +8,7 @@ public class pivotImplementation {
     protected Movie[] movies = new Movie[Defines.numOfMovies+1];
     protected double[][] correlMatrix;
     protected HashSet<ArrayList<Integer>> bigCluster = new HashSet<>();
-    protected  double sumPivot;
+    protected double sumPivot = 0;
     public void main(String[] args) throws Exception {
         if (args.length < 2)
             throw new Exception("should be at least 2 arguments");
@@ -23,20 +23,27 @@ public class pivotImplementation {
         List<Integer> subArrayMovies = new ArrayList<>(subsetMovies);
         pivotAlgo(bigCluster,subArrayMovies);
 
-        sumPivot = 0;
         //if (pivotOrImprove == 1) {
-            for (ArrayList<Integer> c : bigCluster) {
-                for (Integer i : c) {
-                    System.out.printf("<%d> <%s>, ", movies[i].getId(), movies[i].getName());
-                }
-                System.out.println();
-                double cost = calcCost(c);
-                System.out.println(cost);
-                sumPivot += cost;
-            }
-        System.out.println(" the cost of PivotAlgo is - " + sumPivot);
+        sumPivot = printCost(bigCluster);
         System.out.println();
+        System.out.println(sumPivot);
         //}
+    }
+
+    protected double printCost(HashSet<ArrayList<Integer>> bigCluster){
+        double sumAlgo = 0;
+        for(ArrayList<Integer> c: bigCluster){
+            System.out.printf("<%d> <%s> ", movies[c.get(0)].getId(), movies[c.get(0)].getName());
+            for(int i = 1 ; i<c.size(); i++) {
+                System.out.printf(",<%d> <%s> ", movies[c.get(i)].getId(), movies[c.get(i)].getName());
+            }
+            System.out.println();
+            double cost = calcCost(c);
+            System.out.println(cost);
+            sumAlgo +=cost;
+        }
+        return sumAlgo;
+
     }
 
     protected double calcCost(ArrayList<Integer> cluster) {
@@ -65,7 +72,7 @@ public class pivotImplementation {
             Integer movieId = Integer.parseInt(movie[0]);
             Integer movieRate = Integer.parseInt(movie[1]);
             if(subsetMovies.contains(movieId)){
-                System.err.printf("Movies <%d> ignored because it has only <%d> ratings",movieId,movieRate);
+                System.err.printf("Movies <%d> ignored because it has only <%d> ratings\n",movieId,movieRate);
                 subsetMovies.remove(movieId);
             }
             line = bufferRead.readLine();
@@ -91,7 +98,7 @@ public class pivotImplementation {
     private double[][] parseDataSet(String pathName, HashSet<Integer> subset) throws Exception {
         BufferedReader bufferRead = new BufferedReader(new FileReader(pathName));
         String line = bufferRead.readLine();
-        double [][] correlMatrix = new double[Defines.numOfMovies][Defines.numOfMovies];
+        double [][] correlMatrix = new double[Defines.numOfMovies+1][Defines.numOfMovies+1];
         while (line != null) {
             String[] Data = line.split("::"); //{m1.id,m1.name,m1.probability,m2.id,m2.name,m2.probability,p1p2}
             int m1Id = Integer.parseInt(Data[0]);

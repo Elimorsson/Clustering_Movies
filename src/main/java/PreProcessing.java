@@ -64,7 +64,6 @@ public class PreProcessing {
     }
     private static void WriteToFile(Movie m1, Movie m2, double correlation, FileWriter myWriter) {
         try {
-            char c =  correlation>0  ? '+' : '-';
             myWriter.write(m1.getId()+ "::" + m1.getName() + "::" + m1.getProbability() + "::" +
                     m2.getId()+ "::" + m2.getName() + "::"  + m2.getProbability() + "::" +
                    correlation +"\n");
