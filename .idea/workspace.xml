@@ -9,21 +9,7 @@
     <list default="true" id="d3178c45-bb5c-4797-a139-05fab05666ea" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/correlationData.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/correlationData.txt.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PivotAlgorithm/PivotAlgorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/PivotAlgorithm/PivotAlgorithm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PivotAlgorithm/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PivotAlgorithm/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PivotAlgorithm/src/main/java/pivotImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/PivotAlgorithm/src/main/java/pivotImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/improvedAlgorithm/improvedAlgorithm.iml" beforeDir="false" afterPath="$PROJECT_DIR$/improvedAlgorithm/improvedAlgorithm.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/improvedAlgorithm/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/improvedAlgorithm/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/improvedAlgorithm/src/main/java/improveImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/improvedAlgorithm/src/main/java/improveImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/PivotAlgorithm/pivotImplementation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/improvedAlgorithm/improveImplementation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/PreProcessing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PreProcessing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/subset.txt" beforeDir="false" afterPath="$PROJECT_DIR$/subset.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PreProcessing.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PreProcessing.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,7 +118,7 @@
       <workItem from="1587581132073" duration="937000" />
       <workItem from="1594200040383" duration="624000" />
       <workItem from="1596371483389" duration="81510000" />
-      <workItem from="1596625304858" duration="14621000" />
+      <workItem from="1596625304858" duration="15106000" />
     </task>
     <task id="LOCAL-00001" summary="First Day from intellij">
       <created>1587581807623</created>
@@ -141,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587581807623</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix the HasSet problem and duplicate">
+      <created>1596791027888</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1596791027888</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,7 +167,8 @@
       <path value="$PROJECT_DIR$/Clustering_movies" />
     </ignored-roots>
     <MESSAGE value="First Day from intellij" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Day from intellij" />
+    <MESSAGE value="fix the HasSet problem and duplicate" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the HasSet problem and duplicate" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1284" y="-901" key="#Project_Structure" timestamp="1596387489835">
