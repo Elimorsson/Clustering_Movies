@@ -5,12 +5,16 @@ public class improveImplementation {
     private static Movie[] movies = new Movie[Defines.numOfMovies+1];
     private static double[][] correlMatrix;
     private static pivotImplementation pv = new pivotImplementation();
+    private static int epsilon;
     public static void main(String[] args) throws Exception {
 
         pv.runAlgo(args);
         movies = pv.movies;
         correlMatrix = pv.correlMatrix;
         HashSet<ArrayList<Integer>> bigCluster = pv.bigCluster;
+        if(args.length == 3)
+            epsilon = 100;
+        else epsilon = Integer.parseInt(args[3]);
 
         runImproveAlgo(bigCluster);
         double sumImprove = pv.printCost(bigCluster);
@@ -31,7 +35,7 @@ public class improveImplementation {
             ArrayList<Integer> minMoviesIds = findTheLowestCorrel(bigCluster);
             bigClusterCost = insertBestPosition(minMoviesIds, bigCluster); //return the bigCluster Cost
         }
-        while(prevBigClusterCost - bigClusterCost > 100);
+        while(prevBigClusterCost - bigClusterCost > epsilon);
 
     }
 

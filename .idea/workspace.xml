@@ -7,15 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3178c45-bb5c-4797-a139-05fab05666ea" name="Default Changelist" comment="with Jars">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/improveAlgo_jar.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/correlationData.txt" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/correlationData.txt.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/improvedAlgorithm/out/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PivotAlgorithm/src/main/java/pivotImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/PivotAlgorithm/src/main/java/pivotImplementation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/improvedAlgorithm/src/main/java/improveImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/improvedAlgorithm/src/main/java/improveImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/moviecluster.sh" beforeDir="false" afterPath="$PROJECT_DIR$/out/moviecluster.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/pivotJar.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/pivotJar.jar" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +66,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.pivotImplementation">
+  <component name="RunManager" selected="Application.improveImplementation">
     <configuration name="PreProcessing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="PreProcessing" />
       <module name="Clustering_movies" />
@@ -126,7 +120,7 @@
       <workItem from="1596371483389" duration="81510000" />
       <workItem from="1596625304858" duration="15650000" />
       <workItem from="1596996237396" duration="707000" />
-      <workItem from="1597082696438" duration="1785000" />
+      <workItem from="1597082696438" duration="2079000" />
     </task>
     <task id="LOCAL-00001" summary="First Day from intellij">
       <created>1587581807623</created>
@@ -156,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597082977908</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix bash, go home sivan">
+      <created>1597086104689</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1597086104689</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +193,8 @@
     </ignored-roots>
     <MESSAGE value="First Day from intellij" />
     <MESSAGE value="fix the HasSet problem and duplicate" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the HasSet problem and duplicate" />
+    <MESSAGE value="fix bash, go home sivan" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bash, go home sivan" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1284" y="-901" key="#Project_Structure" timestamp="1596387489835">
@@ -290,16 +292,5 @@
       <screen x="732" y="-1080" width="1920" height="1040" />
     </state>
     <state x="1355" y="-855" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/732.-1080.1920.1040@732.-1080.1920.1040" timestamp="1596381122425" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/improvedAlgorithm/src/main/java/improveImplementation.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
