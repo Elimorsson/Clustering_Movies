@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
@@ -9,7 +8,7 @@ public class pivotImplementation {
     protected double[][] correlMatrix;
     protected HashSet<ArrayList<Integer>> bigCluster = new HashSet<>();
     protected double sumPivot = 0;
-    public void main(String[] args) throws Exception {
+    public void runAlgo(String[] args) throws Exception {
         if (args.length < 2)
             throw new Exception("should be at least 2 arguments");
         String subSSetPath = args[0];
@@ -28,6 +27,11 @@ public class pivotImplementation {
         System.out.println();
         System.out.println(sumPivot);
         //}
+    }
+    public static void main(String[] args) throws Exception {
+        pivotImplementation pv = new pivotImplementation();
+        pv.runAlgo(args);
+
     }
 
     protected double printCost(HashSet<ArrayList<Integer>> bigCluster){
@@ -106,8 +110,7 @@ public class pivotImplementation {
             Movie m1 = movies[m1Id] == null ? new Movie(m1Id,Data[1],Double.parseDouble(Data[2])) : movies[m1Id];
             Movie m2 =  movies[m2Id] == null ? new Movie(m2Id,Data[4],Double.parseDouble(Data[5])) : movies[m2Id];
             double probability_p1p2 = Double.parseDouble(Data[6]);
-            if(subset.contains(m1.getId()) &&
-                    subset.contains(m2.getId())){
+            if(subset.contains(m1.getId()) && subset.contains(m2.getId())){
                 movies[m1.getId()] = m1;
                 movies[m2.getId()] = m2;
                 if(m1.getId()>m2.getId()){
@@ -122,8 +125,8 @@ public class pivotImplementation {
     }
 
 
-    public static boolean isNumeric(String strNum) {
-        Integer d;
+    private static boolean isNumeric(String strNum) {
+        int d;
         if (strNum == null) {
             return false;
         }
@@ -135,11 +138,11 @@ public class pivotImplementation {
 
         return d <= Defines.numOfMovies;
     }
-    public static int getRandomNumber(int min, int max) {
+    private static int getRandomNumber(int min, int max) {
         return (int) ((Math.random() * (max - min)) + min);
     }
 
-    public void pivotAlgo(HashSet<ArrayList<Integer>> bigCluster, List<Integer> cluster){
+    private void pivotAlgo(HashSet<ArrayList<Integer>> bigCluster, List<Integer> cluster){
         if(cluster.isEmpty()){
             return;
         }

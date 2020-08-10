@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="improveAlgo:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/improveAlgo_jar</output-path>
+    <root id="archive" name="improvedAlgorithm.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="improvedAlgorithm" />
+      <element id="module-output" name="Clustering_movies" />
+      <element id="module-output" name="PivotAlgorithm" />
+    </root>
+  </artifact>
+</component>

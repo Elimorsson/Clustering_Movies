@@ -7,7 +7,7 @@ public class improveImplementation {
     private static pivotImplementation pv = new pivotImplementation();
     public static void main(String[] args) throws Exception {
 
-        pv.main(args);
+        pv.runAlgo(args);
         movies = pv.movies;
         correlMatrix = pv.correlMatrix;
         HashSet<ArrayList<Integer>> bigCluster = pv.bigCluster;
