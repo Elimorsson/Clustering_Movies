@@ -28,6 +28,7 @@ public class PreProcessing {
         finalMovies = Arrays.stream(movies).filter(movie -> movie.getIgnored()==0).collect(Collectors.toList());
         movies = finalMovies.toArray(new Movie[0]);
 
+        //createSubsetFile();
 
         FileWriter myWriter = createFile("correlationData.txt");
         for (int i = 0; i < movies.length; i++) {

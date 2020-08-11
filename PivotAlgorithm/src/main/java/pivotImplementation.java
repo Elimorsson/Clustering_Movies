@@ -11,22 +11,26 @@ public class pivotImplementation {
     public void runAlgo(String[] args) throws Exception {
         if (args.length < 2)
             throw new Exception("should be at least 2 arguments");
-        String subSSetPath = args[0];
+        String dataSetFolder = args[0];
         String subsetPath = args[1];
-        int pivotOrImprove = Integer.parseInt(args[2]);
+        int pivotOrImprove;
+        if (isNumeric(args[2])) {
+            pivotOrImprove = Integer.parseInt(args[2]);
+        }
+        else throw new IllegalArgumentException();
         HashSet<Integer> subsetMovies = parseSubSet(subsetPath);
-        String dataSetPath = subSSetPath+ "/correlationData.txt";
-        String ignoredPath = subSSetPath+ "/ignoredMovies.txt";
+        String dataSetPath = dataSetFolder+ "/correlationData.txt";
+        String ignoredPath = dataSetFolder+ "/ignoredMovies.txt";
         filterIgnoredMovies(subsetMovies , ignoredPath);
         correlMatrix = parseDataSet(dataSetPath,subsetMovies);
         List<Integer> subArrayMovies = new ArrayList<>(subsetMovies);
         pivotAlgo(bigCluster,subArrayMovies);
 
-        //if (pivotOrImprove == 1) {
-        sumPivot = printCost(bigCluster);
-        System.out.println();
-        System.out.println(sumPivot);
-        //}
+        if (pivotOrImprove == 1) {
+            sumPivot = printCost(bigCluster);
+            System.out.println();
+            System.out.println(sumPivot);
+        }
     }
     public static void main(String[] args) throws Exception {
         pivotImplementation pv = new pivotImplementation();

@@ -5,21 +5,17 @@ public class improveImplementation {
     private static Movie[] movies = new Movie[Defines.numOfMovies+1];
     private static double[][] correlMatrix;
     private static pivotImplementation pv = new pivotImplementation();
-    private static int epsilon;
+
     public static void main(String[] args) throws Exception {
 
         pv.runAlgo(args);
         movies = pv.movies;
         correlMatrix = pv.correlMatrix;
         HashSet<ArrayList<Integer>> bigCluster = pv.bigCluster;
-        if(args.length == 3)
-            epsilon = 100;
-        else epsilon = Integer.parseInt(args[3]);
 
         runImproveAlgo(bigCluster);
         double sumImprove = pv.printCost(bigCluster);
-//        System.out.println(sumImprove);
-        System.out.printf(" the pivot is %f the best of the best is %f",pv.sumPivot,sumImprove);
+        System.out.println(sumImprove);
     }
 
     private static void runImproveAlgo(HashSet<ArrayList<Integer>> bigCluster) {
@@ -35,7 +31,7 @@ public class improveImplementation {
             ArrayList<Integer> minMoviesIds = findTheLowestCorrel(bigCluster);
             bigClusterCost = insertBestPosition(minMoviesIds, bigCluster); //return the bigCluster Cost
         }
-        while(prevBigClusterCost - bigClusterCost > epsilon);
+        while(prevBigClusterCost - bigClusterCost > 50);
 
     }
 
@@ -100,7 +96,7 @@ public class improveImplementation {
             }
             int minCorrel = Integer.MAX_VALUE;
             int minMovieId = -1;
-            for (Integer movieId : c) {        //we have more that 1 elements and we pick one element to remove
+            for (Integer movieId : c) {       //we pick one element to remove
                 int tempCorrel = calcCorrel(c,movieId);
                 if (tempCorrel < minCorrel) {
                     minCorrel = tempCorrel ;
@@ -109,7 +105,6 @@ public class improveImplementation {
             }
             minMoviesIds.add(minMovieId);
             elementToRemoveIncluster.put(c,minMovieId);
-//            c.remove(Integer.valueOf(minMovieId));      //the min size is 1
         }
         for (ArrayList<Integer> clusterToRemove : toRemoveSet) {
             bigCluster.remove(clusterToRemove);
